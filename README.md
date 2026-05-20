@@ -33,7 +33,7 @@ meu-template-python/
  ┣ 📄 pyproject.toml     # Gestão moderna de dependências e definições do projeto
  ┗ 📄 README.md          # Este ficheiro
 Aviso de Documentação: Não coloque manuais de arquitetura, guias de APIs ou fluxogramas neste README. Abra o Obsidian, aponte para a pasta docs/ como o seu cofre e documente a arquitetura utilizando o padrão P.A.R.A.
-
+```
 🛠️ Como Utilizar Este Template (Para Novos Projetos)
 No canto superior direito deste repositório no GitHub, clique no botão verde "Use this template" e selecione "Create a new repository".
 Defina o nome do seu novo projeto e clique em Create repository.
