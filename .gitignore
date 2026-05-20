@@ -23,9 +23,8 @@ dist/
 # ==========================================
 # ARQUIVOS DA PASTA INSTANCE (Flask)
 # ==========================================
-# Ignora todo o conteúdo (bancos e senhas) dentro da pasta instance
+
 instance/*
-# Exceção: Permite que o arquivo vazio suba para manter a estrutura da pasta
 !instance/.gitkeep
 
 # ==========================================
