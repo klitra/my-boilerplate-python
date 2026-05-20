@@ -1,0 +1,63 @@
+name: Gemini Pro - Revisão por Commit
+ 
+# Esta automação corre em cada "push" (envio de código)
+on:
+  push:
+    branches:
+      - main
+ 
+jobs:
+  revisar_alteracoes:
+    runs-on: ubuntu-latest
+ 
+    steps:
+      - name: Checkout do código
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2 # Necessário para comparar o commit atual com o anterior
+ 
+      - name: Configurar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+ 
+      - name: Instalar Dependências
+        run: pip install google-generativeai
+ 
+      - name: Análise de Commit com Gemini Pro
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: |
+          python -c "
+          import os
+          import subprocess
+          import google.generativeai as genai
+ 
+          # Configuração
+          genai.configure(api_key=os.environ['GEMINI_API_KEY'])
+          model = genai.GenerativeModel('gemini-2.0-flash')
+ 
+          # Extrai apenas as mudanças deste commit específico
+          diff = subprocess.getoutput('git diff HEAD~1 HEAD')
+ 
+          if not diff or len(diff.strip()) < 10:
+              print('Sem alterações significativas para rever.')
+          else:
+              prompt = f'''
+              Atua como um Revisor de Código Sênior.
+              Analisa apenas as mudanças deste commit e fornece feedback direto sobre:
+              1. Erros de lógica introduzidos.
+              2. Riscos de segurança (ex: dados expostos, vulnerabilidades).
+              3. Dicas rápidas de Clean Code para este trecho específico.
+              
+              MUDANÇAS NO COMMIT:
+              {diff}
+              '''
+              
+              response = model.generate_content(prompt)
+              
+              print('\n' + '='*50)
+              print('🚀 REVISÃO DO COMMIT (Gemini Pro)')
+              print('='*50 + '\n')
+              print(response.text)
+          "

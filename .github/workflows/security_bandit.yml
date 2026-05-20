@@ -1,0 +1,26 @@
+name: 🛡️ Varredura de Segurança (Bandit)
+ 
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+ 
+jobs:
+  analise_seguranca:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Baixar o código
+        uses: actions/checkout@v4
+ 
+      - name: Configurar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+ 
+      - name: Instalar Bandit
+        run: pip install bandit
+ 
+      - name: Rodar varredura de vulnerabilidades
+        # Ignora a pasta de testes para não gerar falsos positivos
+        run: bandit -r . -x ./tests -lll

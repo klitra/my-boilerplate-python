@@ -1,0 +1,83 @@
+name: Revisor Gemini (Projeto Completo)
+ 
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch: # Cria um botão no GitHub para rodar manualmente quando quiser
+ 
+jobs:
+  revisar_estrutura_completa:
+    runs-on: ubuntu-latest
+ 
+    steps:
+      - name: Baixar o repositório
+        uses: actions/checkout@v4
+ 
+      - name: Preparar ambiente
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+ 
+      - name: Instalar Gemini
+        run: pip install google-generativeai
+ 
+      - name: Analisar estrutura completa com o Gemini
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: |
+          python -c "
+          import os
+          import google.generativeai as genai
+ 
+          genai.configure(api_key=os.environ['GEMINI_API_KEY'])
+          model = genai.GenerativeModel('gemini-2.0-flash')
+ 
+          estrutura_pastas = ''
+          codigo_completo = ''
+ 
+          # Percorre todas as pastas e arquivos do seu projeto
+          for root, dirs, files in os.walk('.'):
+              # Ignora pastas ocultas do sistema e cache
+              if '.git' in root or '__pycache__' in root or '.github' in root:
+                  continue
+                  
+              for file in files:
+                  # Lê apenas os seus scripts Python (adicione outras extensões se precisar, ex: .sql, .html)
+                  if file.endswith('.py'):
+                      caminho_arquivo = os.path.join(root, file)
+                      estrutura_pastas += f'- {caminho_arquivo}\n'
+                      
+                      try:
+                          with open(caminho_arquivo, 'r', encoding='utf-8') as f:
+                              conteudo = f.read()
+                              codigo_completo += f'\n\n### ARQUIVO: {caminho_arquivo} ###\n{conteudo}\n'
+                      except Exception as e:
+                          pass
+ 
+          if not codigo_completo:
+              print('Nenhum arquivo Python encontrado para revisão.')
+          else:
+              prompt = f'''
+              Você é um Arquiteto de Software e Engenheiro Sênior. 
+              Avalie a estrutura inteira deste repositório.
+              
+              1. Avalie a organização das pastas e modularização.
+              2. Aponte falhas de segurança, gargalos de performance e duplicação de código.
+              3. Sugira uma arquitetura melhor, se necessário.
+              
+              ESTRUTURA DE PASTAS DOS SCRIPTS:
+              {estrutura_pastas}
+              
+              CÓDIGO FONTE DE TODOS OS ARQUIVOS:
+              {codigo_completo}
+              '''
+              
+              response = model.generate_content(prompt)
+              
+              print('=============================================')
+              print('🔍 REVISÃO DA ARQUITETURA COMPLETA DO PROJETO 🔍')
+              print('=============================================\n')
+              print(response.text)
+          "
+ 
