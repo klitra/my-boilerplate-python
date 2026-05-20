@@ -12,7 +12,7 @@ jobs:
  
     steps:
       - name: Baixar o repositório
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
  
       - name: Preparar ambiente
         uses: actions/setup-python@v5
