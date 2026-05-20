@@ -34,7 +34,7 @@ meu-template-python/
  ┗ 📄 README.md          # Este ficheiro
 Aviso de Documentação: Não coloque manuais de arquitetura, guias de APIs ou fluxogramas neste README. Abra o Obsidian, aponte para a pasta docs/ como o seu cofre e documente a arquitetura utilizando o padrão P.A.R.A.
 ```
-🛠️ Como Utilizar Este Template (Para Novos Projetos)
+## 🛠️ Como Utilizar Este Template (Para Novos Projetos)
 No canto superior direito deste repositório no GitHub, clique no botão verde "Use this template" e selecione "Create a new repository".
 Defina o nome do seu novo projeto e clique em Create repository.
 Clone o seu novo repositório para a máquina local:
@@ -69,7 +69,7 @@ Para validar se a estrutura foi montada corretamente e se os testes base estão 
 nox
 (O Nox irá criar ambientes temporários isolados para testar o seu código).
 
-🔐 Tratamento de Dados e Segurança Operacional
+## 🔐 Tratamento de Dados e Segurança Operacional
 A segurança do servidor é a nossa prioridade. Qualquer ficheiro de base de dados SQLite (*.db), ficheiros de log rotativos ou ficheiros com credenciais (.env, secrets.json) devem obrigatoriamente ser armazenados dentro da pasta /instance/.
 
 As regras do .gitignore bloqueiam proativamente o envio destes ficheiros para o repositório remoto, mitigando riscos de fugas de credenciais e garantindo compatibilidade segura com permissões restritas em servidores como o IIS (Windows Server).
