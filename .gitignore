@@ -23,9 +23,14 @@ dist/
 # ==========================================
 # ARQUIVOS DA PASTA INSTANCE (Flask)
 # ==========================================
+<<<<<<< HEAD
 # Ignora todo o conteúdo (bancos e senhas) dentro da pasta instance
 instance/*
 # Exceção: Permite que o arquivo vazio suba para manter a estrutura da pasta
+=======
+
+instance/*
+>>>>>>> 2f2165ff95dd90ec171f512dedb63863bceb63b7
 !instance/.gitkeep
 
 # ==========================================
@@ -58,6 +63,46 @@ status_sync.json
 # ==========================================
 # CACHE E COMPILADOS DO PYTHON
 # ==========================================
+<<<<<<< HEAD
+=======
+__pycache__/
+*.py[cod]
+*$py.class
+
+# ==========================================
+# TESTES E COBERTURA (Pytest)
+# ==========================================
+.pytest_cache/
+.coverage
+htmlcov/
+
+# ==========================================
+# CONFIGURAÇÕES DE IDE E SO
+# ==========================================
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# ==========================================
+# DOCUMENTAÇÃO OBSIDIAN (Mantém plugins, ignora interface)
+# ==========================================
+docs/.obsidian/workspace.json
+docs/.obsidian/workspace-mobile.json
+docs/.obsidian/workspace-*.json
+docs/.obsidian/graph.json
+
+
+.mypy_cache/
+/.coverage
+/.coverage.*
+/.nox/
+/.python-version
+/.pytype/
+/dist/
+/docs/_build/
+/src/*.egg-info/
+>>>>>>> 2f2165ff95dd90ec171f512dedb63863bceb63b7
 __pycache__/
 *.py[cod]
 *$py.class
