@@ -34,7 +34,18 @@ meu-template-python/
  ┗ 📄 README.md          # Este arquivo
 ```
 
-> **Aviso de Documentação:** Não coloque manuais de arquitetura, guias de APIs ou fluxogramas neste `README`. Abra o Obsidian, aponte para a pasta `docs/` como o seu cofre e documente a arquitetura utilizando o padrão P.A.R.A.
+---
+
+## 🧠 Filosofia de Engenharia e Metodologia
+
+Este boilerplate não dita apenas onde os arquivos ficam, mas **como o código deve ser construído**. Todo projeto iniciado a partir desta base deve seguir os 4 pilares da nossa engenharia:
+
+1. **P.A.R.A. (Organização Física):** Manuais, guias de APIs e documentações de arquitetura não ficam soltos. Eles vivem no cofre do Obsidian (`/docs`).
+2. **S.M.A.R.T. (Escopo Estratégico):** Nenhuma linha de código é escrita sem um objetivo claro. Todo projeto começa com um escopo Específico, Mensurável, Alcançável, Relevante e Temporal na pasta `01_Projetos/`. Se não tem prazo e métrica, não é projeto, é ideia.
+3. **TDD / Método Científico (Testes):** O código deve se autoafirmar. Escrevemos a hipótese (Teste na pasta `tests/`) antes do experimento (Código na pasta `src/`). O teste falha (Red), o código prova a hipótese (Green), e a arquitetura é limpa (Refactor).
+4. **P.D.C.A. (Execução Contínua):** O diário de bordo do desenvolvedor segue os ciclos de *Planejar, Testar, Medir e Ajustar*, criando um histórico imutável do **porquê** as decisões arquiteturais foram tomadas.
+
+> 💡 **Dica:** Um template Markdown combinando S.M.A.R.T. e P.D.C.A. já está disponível para uso dentro de `docs/03_Recursos/template_projeto.md`.
 
 ---
 
@@ -80,7 +91,7 @@ pre-commit install
 ```
 
 ### 4. Executar os Testes (Opcional)
-Para validar se a estrutura foi montada corretamente e se os testes base estão passando, execute:
+Para validar se a estrutura foi montada corretamente e se os testes base estão passando, execute o ciclo de validação científica:
 ```bash
 nox
 ```
@@ -89,6 +100,6 @@ nox
 ---
 
 ## 🔐 Tratamento de Dados e Segurança Operacional
-A segurança do servidor é a nossa prioridade. Qualquer arquivo de banco de dados SQLite (`*.db`), arquivos de log rotativos ou arquivos com credenciais (`.env`, `secrets.json`) **devem obrigatoriamente** ser armazenados dentro da pasta `/instance/`. 
+A segurança da infraestrutura é a nossa prioridade. Qualquer arquivo de banco de dados SQLite (`*.db`), arquivos de log rotativos ou arquivos com credenciais (`.env`, `secrets.json`) **devem obrigatoriamente** ser armazenados dentro da pasta `/instance/`. 
 
 As regras do `.gitignore` bloqueiam proativamente o envio destes arquivos para o repositório remoto, mitigando riscos de vazamento de credenciais e garantindo compatibilidade segura com permissões restritas em servidores como o IIS (Windows Server).
