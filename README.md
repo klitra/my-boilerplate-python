@@ -10,6 +10,7 @@ Fornece uma infraestrutura blindada de versionamento, garantindo que bancos de d
 
 * 🛡️ **Segurança por Padrão:** O `.gitignore` foi rigorosamente configurado para isolar ambientes Windows Server (IIS), bancos de dados locais (`.db`), pacotes *Air-Gapped* e variáveis de ambiente.
 * 🗃️ **Isolamento de Dados (Instance Pattern):** Estrutura preparada para manter os dados operacionais, logs e credenciais na pasta `/instance`, separando a lógica de negócio dos arquivos gerados em tempo de execução.
+* 🧪 **Ambiente Otimizado para PoCs (Sandbox):** Pasta isolada para experimentações rápidas, análises com Pandas ou scripts de rascunho com Playwright, impedindo que códigos experimentais poluam o diretório de produção.
 * 🧠 **Documentação P.A.R.A (Obsidian Ready):** A pasta `/docs` abandonou geradores estáticos complexos (como o Sphinx). É agora um cofre nativo pronto para ser aberto no **Obsidian**, estruturado no método P.A.R.A (Projetos, Áreas, Recursos e Arquivos) para máxima velocidade operacional.
 * ⚙️ **Qualidade de Código Automatizada:** Integração total com `pre-commit`, `nox` e `pytest` para garantir formatação, validação de tipos e testes consistentes antes de qualquer *commit*.
 
@@ -23,29 +24,50 @@ meu-template-python/
  ┣ 📂 docs/              # 📚 Base de Conhecimento do Obsidian (Método P.A.R.A.)
  ┃  ┣ 📂 01_Projetos/    # Iniciativas ativas com prazo (Ex: sprint_integracao_ad/)
  ┃  ┣ 📂 02_Areas/       # Manutenções permanentes da operação (Ex: active_directory/)
- ┃  ┣ 📂 03_Recursos/    # Material de apoio e scripts isolados (Ex: snippets_python/)
- ┃  ┗ 📂 04_Arquivo/     # Histórico técnico e projetos concluídos
+ ┃  ┣ 📂 03_Recursos/    # Material de apoio, snippets e templates organizacionais
+ ┃  ┗ 📂 04_Arquivo/     # Histórico técnico, projetos concluídos e POCs depreciadas
  ┣ 📂 instance/          # 🗄️ Dados locais e sensíveis (SQLite, logs, chaves) [IGNORADO PELO GIT]
- ┣ 📂 src/               # 💻 Código-fonte principal do sistema (Scripts, APIs, Módulos)
- ┣ 📂 tests/             # Suíte de testes automatizados (Pytest)
+ ┣ 📂 sandbox/           # 🧪 Caixa de Areia (POCs, testes de hipóteses, scripts isolados e notebooks)
+ ┣ 📂 src/               # 💻 Código-fonte principal e homologado (Scripts, APIs, Módulos)
+ ┣ 📂 tests/             # Suíte de testes automatizados de produção (Pytest)
  ┣ 📄 .pre-commit-config.yaml # Regras de formatação automática de código
  ┣ 📄 noxfile.py         # Maestro de testes multi-ambiente
  ┣ 📄 pyproject.toml     # Gestão moderna de dependências e definições do projeto
  ┗ 📄 README.md          # Este arquivo
 ```
 
+> **Aviso de Documentação:** Não coloque manuais de arquitetura, guias de APIs ou fluxogramas neste `README`. Abra o Obsidian, aponte para a pasta `docs/` como o seu cofre e documente a arquitetura utilizando o padrão P.A.R.A.
+
 ---
 
-## 🧠 Filosofia de Engenharia e Metodologia
+## 🧠 Fluxo Ciclo de Vida: Da Ideia à Produção (POC-PARA-SMART-TDD-PDCA)
 
-Este boilerplate não dita apenas onde os arquivos ficam, mas **como o código deve ser construído**. Todo projeto iniciado a partir desta base deve seguir os 4 pilares da nossa engenharia:
+Este boilerplate implementa um pipeline rigoroso de desenvolvimento baseado no **Método Científico**, garantindo que apenas códigos validados e seguros cheguem ao ambiente de produção. O ciclo de vida segue o fluxo sequencial abaixo:
 
-1. **P.A.R.A. (Organização Física):** Manuais, guias de APIs e documentações de arquitetura não ficam soltos. Eles vivem no cofre do Obsidian (`/docs`).
-2. **S.M.A.R.T. (Escopo Estratégico):** Nenhuma linha de código é escrita sem um objetivo claro. Todo projeto começa com um escopo Específico, Mensurável, Alcançável, Relevante e Temporal na pasta `01_Projetos/`. Se não tem prazo e métrica, não é projeto, é ideia.
-3. **TDD / Método Científico (Testes):** O código deve se autoafirmar. Escrevemos a hipótese (Teste na pasta `tests/`) antes do experimento (Código na pasta `src/`). O teste falha (Red), o código prova a hipótese (Green), e a arquitetura é limpa (Refactor).
-4. **P.D.C.A. (Execução Contínua):** O diário de bordo do desenvolvedor segue os ciclos de *Planejar, Testar, Medir e Ajustar*, criando um histórico imutável do **porquê** as decisões arquiteturais foram tomadas.
+```text
+ [ 🔬 1. POC (Sandbox) ] ──> Validação rápida de viabilidade na pasta sandbox/
+         │
+         ▼ (Ideia Aprovada)
+ [ 📂 2. P.A.R.A. ]      ──> Classificação e abertura da nota em docs/01_Projetos/
+         │
+         ▼ (Métricas Definidas)
+ [ 📐 3. S.M.A.R.T. ]    ──> Definição de alvos claros, restrições e prazo limite
+         │
+         ▼ (Desenvolvimento Inverso)
+ [ 🔬 4. TDD ]           ──> Criação do Teste (Red) ➔ Código Mínimo (Green) ➔ Refatoração
+         │
+         ▼ (Diário de Bordo)
+ [ 🔄 5. P.D.C.A. ]      ──> Execução contínua em Sprints (Planejar, Testar, Medir, Ajustar)
+```
 
-> 💡 **Dica:** Um template Markdown combinando S.M.A.R.T. e P.D.C.A. já está disponível para uso dentro de `docs/03_Recursos/template_projeto.md`.
+### Detalhamento das Etapas:
+1. **🔬 POC (Sandbox):** Toda ideia começa como um experimento livre na pasta `sandbox/`. O objetivo exclusivo é provar a viabilidade técnica (ex: validar um seletor do Playwright ou uma query SQLAlchemy). Se falhar, é descartada ou arquivada sem alterar a estrutura de produção.
+2. **📂 P.A.R.A. (Organização Física):** Se a POC for bem-sucedida, o projeto ganha uma casa física no cofre do Obsidian (`docs/01_Projetos/`), centralizando todo o conhecimento gerado.
+3. **📐 S.M.A.R.T. (Escopo Estratégico):** O projeto é formalizado estabelecendo critérios Específicos, Mensuráveis, Alcançáveis, Relevantes e Temporais. Se não houver prazo e métrica de sucesso clara, a iniciativa não avança.
+4. **🔬 TDD (Validação Científica):** O desenvolvimento do código definitivo na pasta `src/` é guiado por testes criados previamente na pasta `tests/`. O código é forçado a se autoafirmar e se autotestar antes de receber novas features.
+5. **🔄 P.D.C.A. (Execução Contínua):** Durante o desenvolvimento, cada incremento técnico segue o ciclo incremental: *Planejar a hipótese, Testar o código, Medir os resultados/performance e Ajustar desvios*.
+
+> 💡 **Dica:** O documento base completo unificando este fluxo de ciclo de vida está disponível para uso em `docs/03_Recursos/template_poc_fluxo.md`.
 
 ---
 
@@ -61,7 +83,7 @@ Este boilerplate não dita apenas onde os arquivos ficam, mas **como o código d
 
 ---
 
-## ⚙️ Configuração Técnica e Instalação
+## ⚙️ Configuração Técnico-Operacional
 
 Siga os passos abaixo para inicializar a arquitetura rigorosa de desenvolvimento:
 
