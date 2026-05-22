@@ -24,7 +24,7 @@ meu-template-python/
  ┣ 📂 docs/              # 📚 Base de Conhecimento do Obsidian (Método P.A.R.A.)
  ┃  ┣ 📂 01_Projetos/    # Iniciativas ativas com prazo (Ex: sprint_integracao_ad/)
  ┃  ┣ 📂 02_Areas/       # Manutenções permanentes da operação (Ex: active_directory/)
- ┃  ┣ 📂 03_Recursos/    # Material de apoio, snippets e templates organizacionais
+ ┃  ┣ 📂 03_Recursos/    # Material de apoio, templates de RFC e snippets
  ┃  ┗ 📂 04_Arquivo/     # Histórico técnico, projetos concluídos e POCs depreciadas
  ┣ 📂 instance/          # 🗄️ Dados locais e sensíveis (SQLite, logs, chaves) [IGNORADO PELO GIT]
  ┣ 📂 sandbox/           # 🧪 Caixa de Areia (POCs, testes de hipóteses, scripts isolados e notebooks)
@@ -40,36 +40,40 @@ meu-template-python/
 
 ---
 
-## 🧠 Fluxo Ciclo de Vida: Da Ideia à Produção (POC-PARA-SMART-TDD-PDCA)
+## 🧠 Fluxo Ciclo de Vida: Governança Colaborativa e Engenharia
 
-Este boilerplate implementa um pipeline rigoroso de desenvolvimento baseado no **Método Científico**, garantindo que apenas códigos validados e seguros cheguem ao ambiente de produção. O ciclo de vida segue o fluxo sequencial abaixo:
+Este boilerplate implementa um pipeline rigoroso de desenvolvimento colaborativo baseado no **Método Científico** e no **Consenso de Equipe**, garantindo que apenas códigos validados, debatidos e seguros cheguem ao ambiente de produção.
 
 ```text
- [ 🔬 1. POC (Sandbox) ] ──> Validação rápida de viabilidade na pasta sandbox/
+ [ 💡 1. RFC (Consenso) ] ──> Proposta de Ideia via Pull Request com Regra de Veto Democrático
          │
-         ├─(Solução Trivial) ──> [ ⏩ FAST-TRACK ] ──> Arquivar em docs/03_Recursos/
+         ▼ (Aprovado)
+ [ 🔬 2. POC (Sandbox) ]  ──> Validação rápida de viabilidade na pasta sandbox/
+         │
+         ├─(Solução Trivial) ──> [ ⏩ FAST-TRACK ] ──> Snippet direto em docs/03_Recursos/
          │
          ▼ (Integração Complexa)
- [ 📂 2. P.A.R.A. ]      ──> Classificação e abertura da nota em docs/01_Projetos/
+ [ 📂 3. P.A.R.A. ]       ──> Classificação e abertura do projeto formal em docs/01_Projetos/
          │
          ▼ (Métricas Definidas)
- [ 📐 3. S.M.A.R.T. ]    ──> Definição de alvos claros, restrições e prazo limite
+ [ 📐 4. S.M.A.R.T. ]     ──> Alinhamento Estratégico (O que, Como, Quando e Por que)
          │
          ▼ (Desenvolvimento Inverso)
- [ 🔬 4. TDD ]           ──> Criação do Teste (Red) ➔ Código Mínimo (Green) ➔ Refatoração
+ [ 🔬 5. TDD ]            ──> Criação do Teste (Red) ➔ Código Mínimo (Green) ➔ Refatoração
          │
          ▼ (Diário de Bordo)
- [ 🔄 5. P.D.C.A. ]      ──> Ciclo Local ➔ Git Push ➔ Validação em Nuvem (GitHub Actions)
+ [ 🔄 6. P.D.C.A. ]       ──> Ciclo Local ➔ Git Push ➔ Validação em Nuvem (GitHub Actions)
 ```
 
 ### Detalhamento das Etapas:
-1. **🔬 POC (Sandbox):** Toda ideia começa como um experimento livre na pasta `sandbox/`. O objetivo é provar a viabilidade técnica. **Regra de Fast-Track:** Se a solução for trivial (snippet rápido), ela pula a burocracia e vai direto para a pasta `03_Recursos/`.
-2. **📂 P.A.R.A. (Organização Física):** Se a POC for bem-sucedida e complexa, o projeto ganha uma casa física no cofre do Obsidian (`docs/01_Projetos/`), centralizando o conhecimento.
-3. **📐 S.M.A.R.T. (Escopo Estratégico):** O projeto é formalizado estabelecendo critérios Específicos, Mensuráveis, Alcançáveis, Relevantes e Temporais. 
-4. **🔬 TDD (Validação Científica):** O código definitivo na pasta `src/` nasce testado (`tests/`). Para pipelines de dados (ex: Pandas), aplicamos o **TDD Orientado a Dados**, focando em Validação de Esquemas (Schema Validation) para garantir a formatação correta de colunas e tipos antes do processamento.
-5. **🔄 P.D.C.A. (Execução Contínua):** Incrementos técnicos seguem o ciclo *Planejar, Testar, Medir, Ajustar*. O ciclo (Act) só é considerado concluído quando o código sofre o `git push` e os robôs de CI/CD (GitHub Actions) testam e aprovam a integração em ambiente neutro.
+1. **💡 RFC (Request for Comments):** Toda automação ou integração nasce como uma proposta documentada. A equipe utiliza a regra do **Veto Democrático** no GitHub (Pull Requests): a ideia só avança se atingir o quórum sem nenhum veto justificado.
+2. **🔬 POC (Sandbox):** Uma vez aprovada, a ideia passa por um experimento livre na pasta `sandbox/` para provar a viabilidade técnica. **Regra de Fast-Track:** Se a solução provar ser trivial (<2h de esforço), ela pula a burocracia e vai direto para a pasta `03_Recursos/`.
+3. **📂 P.A.R.A. (Organização Física):** Projetos complexos validados ganham uma casa física no cofre do Obsidian (`docs/01_Projetos/`), centralizando o conhecimento.
+4. **📐 S.M.A.R.T. (Escopo Estratégico):** O projeto é formalizado estabelecendo critérios Específicos, Mensuráveis, Alcançáveis, Relevantes e Temporais. 
+5. **🔬 TDD (Validação Científica):** O código definitivo na pasta `src/` nasce testado (`tests/`). Para pipelines de dados (ex: Pandas), aplicamos o **TDD Orientado a Dados (Schema Validation)** para garantir a formatação correta antes do processamento.
+6. **🔄 P.D.C.A. (Execução Contínua):** Incrementos técnicos seguem o ciclo *Planejar, Testar, Medir, Ajustar*. O ciclo só é concluído quando o código sofre o `git push` e os robôs de CI/CD (GitHub Actions) testam e aprovam a integração.
 
-> 💡 **Dica:** O documento base completo unificando este fluxo de ciclo de vida está disponível para uso em `docs/03_Recursos/template_poc_fluxo.md`.
+> 💡 **Dica:** Os templates base de **Proposta (RFC)** e **Escopo de Projeto (S.M.A.R.T + PDCA)** já estão disponíveis para uso da equipe dentro de `docs/03_Recursos/`.
 
 ---
 
