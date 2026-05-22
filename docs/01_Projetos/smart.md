@@ -13,6 +13,20 @@
 * **T (Time-bound - Temporal):** * *Prazo Final:* 15 de Junho de 2026. (Este é o prazo que valida o projeto no P.A.R.A.)
 
 ---
+ 
+
+## ⚙️ 2. Execução (Planejar, Testar, Medir)
+
+### 🔄 Sprint 1: Conexão com o Banco
+* **📝 Planejar:** Configurar o SQLAlchemy para ler a base de dados em `/instance/` de forma segura.
+* **🧪 Testar:** Rodar o script em ambiente local apontando para um `.db` de homologação.
+* **📊 Medir:** O script conectou em 2 segundos, mas a query puxou dados duplicados.
+* **🛠️ Ajustar:** Adicionar `.drop_duplicates()` no *dataframe* do Pandas para a próxima versão.
+
+### 🔄 Sprint 2: Extração de Dados (Atual)
+* **📝 Planejar:** [...]
+
+
 
 ## 📋 Lista de Tarefas (Checklist)
 - [x] Configurar `pyproject.toml` e dependências locais.
