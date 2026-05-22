@@ -32,11 +32,11 @@
 
 ---
 
-## ✅ 5. Votação e Consenso da Equipe
-*A regra é clara: A ideia só vai para a fase de POC e desenvolvimento (TDD) quando TODOS os envolvidos marcarem `[x]`. Se você discordar, use o botão "Request Changes" do GitHub apontando a linha e sugerindo a alteração.*
+## ✅ 5. Votação e Consenso (Quórum e Veto Democrático)
+*A regra é o Veto Democrático: A ideia só avança para a fase de POC e desenvolvimento quando atingir o quórum de aprovação abaixo, **desde que não haja nenhum veto ativo** de qualquer outro membro da equipe.*
 
-- [ ] **Aprovação do Arquiteto/Sênior** (@UsuarioGitHub)
+- [ ] **Aprovação de Arquitetura/Engenharia** (@UsuarioGitHub)
 - [ ] **Aprovação de Segurança/Governança** (@UsuarioGitHub)
 - [ ] **Aprovação da Operação/Gestão** (@UsuarioGitHub)
 
-> **⚠️ Regra de Rejeição:** A reprovação sem proposta não é aceita. Se você reprovar, é obrigatório sugerir a arquitetura ou ferramenta que deve substituir a ideia original.
+> **⚠️ Regra do Veto e Rejeição:** 100% da equipe possui poder de veto. Se você discordar da abordagem, use o botão "Request Changes" do GitHub. **A reprovação sem proposta não é aceita.** É obrigatório selecionar a linha no código/texto e sugerir a alteração arquitetural ou de ferramenta para desbloquear a ideia.
