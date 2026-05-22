@@ -20,7 +20,7 @@ Fornece uma infraestrutura blindada de versionamento, garantindo que bancos de d
 
 ```text
 meu-template-python/
- ┣ 📂 .github/           # Workflows de CI/CD para automação de testes
+ ┣ 📂 .github/           # Workflows de CI/CD para automação de testes na nuvem
  ┣ 📂 docs/              # 📚 Base de Conhecimento do Obsidian (Método P.A.R.A.)
  ┃  ┣ 📂 01_Projetos/    # Iniciativas ativas com prazo (Ex: sprint_integracao_ad/)
  ┃  ┣ 📂 02_Areas/       # Manutenções permanentes da operação (Ex: active_directory/)
@@ -47,7 +47,9 @@ Este boilerplate implementa um pipeline rigoroso de desenvolvimento baseado no *
 ```text
  [ 🔬 1. POC (Sandbox) ] ──> Validação rápida de viabilidade na pasta sandbox/
          │
-         ▼ (Ideia Aprovada)
+         ├─(Solução Trivial) ──> [ ⏩ FAST-TRACK ] ──> Arquivar em docs/03_Recursos/
+         │
+         ▼ (Integração Complexa)
  [ 📂 2. P.A.R.A. ]      ──> Classificação e abertura da nota em docs/01_Projetos/
          │
          ▼ (Métricas Definidas)
@@ -57,15 +59,15 @@ Este boilerplate implementa um pipeline rigoroso de desenvolvimento baseado no *
  [ 🔬 4. TDD ]           ──> Criação do Teste (Red) ➔ Código Mínimo (Green) ➔ Refatoração
          │
          ▼ (Diário de Bordo)
- [ 🔄 5. P.D.C.A. ]      ──> Execução contínua em Sprints (Planejar, Testar, Medir, Ajustar)
+ [ 🔄 5. P.D.C.A. ]      ──> Ciclo Local ➔ Git Push ➔ Validação em Nuvem (GitHub Actions)
 ```
 
 ### Detalhamento das Etapas:
-1. **🔬 POC (Sandbox):** Toda ideia começa como um experimento livre na pasta `sandbox/`. O objetivo exclusivo é provar a viabilidade técnica (ex: validar um seletor do Playwright ou uma query SQLAlchemy). Se falhar, é descartada ou arquivada sem alterar a estrutura de produção.
-2. **📂 P.A.R.A. (Organização Física):** Se a POC for bem-sucedida, o projeto ganha uma casa física no cofre do Obsidian (`docs/01_Projetos/`), centralizando todo o conhecimento gerado.
-3. **📐 S.M.A.R.T. (Escopo Estratégico):** O projeto é formalizado estabelecendo critérios Específicos, Mensuráveis, Alcançáveis, Relevantes e Temporais. Se não houver prazo e métrica de sucesso clara, a iniciativa não avança.
-4. **🔬 TDD (Validação Científica):** O desenvolvimento do código definitivo na pasta `src/` é guiado por testes criados previamente na pasta `tests/`. O código é forçado a se autoafirmar e se autotestar antes de receber novas features.
-5. **🔄 P.D.C.A. (Execução Contínua):** Durante o desenvolvimento, cada incremento técnico segue o ciclo incremental: *Planejar a hipótese, Testar o código, Medir os resultados/performance e Ajustar desvios*.
+1. **🔬 POC (Sandbox):** Toda ideia começa como um experimento livre na pasta `sandbox/`. O objetivo é provar a viabilidade técnica. **Regra de Fast-Track:** Se a solução for trivial (snippet rápido), ela pula a burocracia e vai direto para a pasta `03_Recursos/`.
+2. **📂 P.A.R.A. (Organização Física):** Se a POC for bem-sucedida e complexa, o projeto ganha uma casa física no cofre do Obsidian (`docs/01_Projetos/`), centralizando o conhecimento.
+3. **📐 S.M.A.R.T. (Escopo Estratégico):** O projeto é formalizado estabelecendo critérios Específicos, Mensuráveis, Alcançáveis, Relevantes e Temporais. 
+4. **🔬 TDD (Validação Científica):** O código definitivo na pasta `src/` nasce testado (`tests/`). Para pipelines de dados (ex: Pandas), aplicamos o **TDD Orientado a Dados**, focando em Validação de Esquemas (Schema Validation) para garantir a formatação correta de colunas e tipos antes do processamento.
+5. **🔄 P.D.C.A. (Execução Contínua):** Incrementos técnicos seguem o ciclo *Planejar, Testar, Medir, Ajustar*. O ciclo (Act) só é considerado concluído quando o código sofre o `git push` e os robôs de CI/CD (GitHub Actions) testam e aprovam a integração em ambiente neutro.
 
 > 💡 **Dica:** O documento base completo unificando este fluxo de ciclo de vida está disponível para uso em `docs/03_Recursos/template_poc_fluxo.md`.
 
@@ -104,7 +106,6 @@ Com o ambiente ativado, atualize as ferramentas base e instale o projeto em modo
 pip install --upgrade pip setuptools wheel
 pip install -e .[dev]
 ```
-*(Nota: Dependendo do gerenciador de pacotes que escolheu ao gerar o Hypermodern, pode ser necessário utilizar o `poetry install` em vez de `pip`).*
 
 ### 3. Configurar a Automação de Qualidade (Pre-commit)
 O projeto possui robôs que formatam o código automaticamente antes de cada *commit*. Ative-os com:
@@ -113,11 +114,10 @@ pre-commit install
 ```
 
 ### 4. Executar os Testes (Opcional)
-Para validar se a estrutura foi montada corretamente e se os testes base estão passando, execute o ciclo de validação científica:
+Para validar se a estrutura foi montada corretamente e se os testes base estão passando, execute o ciclo de validação científica local:
 ```bash
 nox
 ```
-*(O Nox irá criar ambientes temporários isolados para testar o seu código).*
 
 ---
 
