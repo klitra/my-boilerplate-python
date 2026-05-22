@@ -77,6 +77,15 @@ Este boilerplate implementa um pipeline rigoroso de desenvolvimento colaborativo
 
 ---
 
+## 🧬 Cultura de Experimentação (Inner Source & Forks)
+
+Acreditamos na cultura do **"Mostre, não fale"**. A inovação da equipe não deve ser sufocada pela burocracia da produção. Por isso, dividimos este repositório em duas mentalidades claras:
+
+* 🔒 **Ambiente de Produção (Branch `main`):** Governança ditatorial. Nenhum código entra na raiz do projeto sem passar pelo fluxo completo acima (RFC, S.M.A.R.T, TDD e Consenso).
+* 🔓 **Laboratório de Inovação (Forks e Branches):** Liberdade absoluta. Teve uma ideia de arquitetura diferente? Acha que consegue fazer a automação de uma forma mais rápida? **Não peça permissão.** Faça um *Fork* do repositório ou crie uma Branch paralela. Use a pasta `sandbox/`, teste novas bibliotecas, erre e quebre o seu código à vontade. Quando a sua POC provar o valor da sua ideia, abra o RFC para debatermos a sua implementação. 
+
+---
+
 ## 🛠️ Como Utilizar Este Template (Para Novos Projetos)
 
 1. No canto superior direito deste repositório no GitHub, clique no botão verde **"Use this template"** e selecione **"Create a new repository"**.
