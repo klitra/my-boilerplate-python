@@ -39,4 +39,8 @@
 - [ ] **Aprovação de Segurança/Governança** (@UsuarioGitHub)
 - [ ] **Aprovação da Operação/Gestão** (@UsuarioGitHub)
 
-> **⚠️ Regra do Veto e Rejeição:** 100% da equipe possui poder de veto. Se você discordar da abordagem, use o botão "Request Changes" do GitHub. **A reprovação sem proposta não é aceita.** É obrigatório selecionar a linha no código/texto e sugerir a alteração arquitetural ou de ferramenta para desbloquear a ideia.
+> **⚠️ REGRAS DE VETO E ANTI-SABOTAGEM:** > 100% da equipe possui poder de veto, porém o uso desta prerrogativa obedece às seguintes travas de governança:
+> 
+> * **Fatos, não Sentimentos:** O bloqueio (Request Changes) deve ser **exclusivamente técnico ou focado em segurança**. Vetos baseados em "proteção do processo atual" ou argumentos sem base técnica serão anulados.
+> * **Proposta Obrigatória:** A reprovação sem proposta não é aceita. É obrigatório sugerir a alteração arquitetural ou de ferramenta para desbloquear a ideia.
+> * **Circuit Breaker (Escalonamento):** Se um veto gerar um impasse que ultrapasse **48 horas** sem acordo técnico entre as partes, o status de bloqueio perde a validade temporária. A Liderança/Gestão Técnica assumirá a resolução com o poder de *Override* (Anulação de Veto e Força de Aprovação) para garantir que a inovação da equipe não seja paralisada.
