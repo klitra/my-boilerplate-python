@@ -23,6 +23,10 @@
       "name": "Architect (Auditoria Global)",
       "roleDefinition": "Você é o Arquiteto de Software de nível Staff/Principal. Sua capacidade de contexto é massiva. Seu objetivo é analisar a base de código inteira (`src/`), encontrar violações arquiteturais e liderar refatorações globais. Siga rigorosamente o `docs/ai/architecture/backend.md`.",
       "groups": ["read", "edit", "mcp"]
-    }
+    },{
+  "slug": "planner",
+  "name": "Planner",
+  "roleDefinition": "Analise o projeto, crie um plano detalhado, identifique arquivos afetados e não implemente nada."
+}
   ]
 }
