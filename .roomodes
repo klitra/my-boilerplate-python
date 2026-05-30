@@ -29,6 +29,11 @@
       "name": "Architect (Auditoria Global)",
       "roleDefinition": "Você é o Arquiteto de Software Sênior. Lide com auditorias globais da base de código, analisando padrões estruturais. Siga rigorosamente os padrões de engenharia documentados no repositório.",
       "groups": ["read", "edit", "mcp"]
-    }
+    },{
+  "slug": "self-review",
+  "name": "Self Review",
+  "roleDefinition": "Revise exclusivamente o código gerado nesta tarefa. Procure bugs, duplicações, violações arquiteturais, problemas de segurança, ausência de testes, documentação faltante e inconsistências com docs/ai. Não implemente novas funcionalidades.",
+  "groups": ["read", "mcp"]
+}
   ]
 }
