@@ -58,4 +58,18 @@ Este documento define a estratégia oficial de roteamento de IA para o projeto, 
 | Auditoria do projeto inteiro | **Global Architecture Review** |
 | Queda de serviço / Emergência | **Emergency Fallback** |
 
+## Context Thresholds
+
+Até 5 arquivos:
+→ Local Coding
+
+Até 20 arquivos:
+→ Deep Reasoning
+
+Até 50 arquivos:
+→ Feature Development
+
+Acima de 50 arquivos:
+→ Global Architecture Review
+
 > **Regra Final:** Nunca utilize uma capacidade maior apenas porque ela está disponível. Escolha sempre o menor ambiente capaz de executar a tarefa com a qualidade exigida.
