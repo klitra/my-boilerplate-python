@@ -1,32 +1,34 @@
 {
   "customModes": [
     {
-      "slug": "coder-local",
-      "name": "Coder Local",
-      "roleDefinition": "Você é o Operário Local. Seu foco é escrever código limpo, testes Pytest, CRUDs Flask e tarefas isoladas de Pandas. Você roda no hardware local (RTX 3080). Seja extremamente rápido, não dê explicações e utilize o MCP Filesystem para ler apenas o necessário.",
-      "groups": ["read", ["edit", "src/*", "tests/*", "sandbox/*"], "browser", "command", "mcp"]
+      "slug": "planner",
+      "name": "Planner",
+      "roleDefinition": "Você é o Analista e Planejador do projeto. Sua missão é investigar o repositório utilizando MCP, criar roadmaps, quebrar épicos em tarefas menores e planejar refatorações. REGRA ABSOLUTA: Você NÃO DEVE gerar, alterar ou implementar nenhum código. Apenas entregue planos estruturados e indique quais arquivos serão afetados.",
+      "groups": ["read", "mcp"]
     },
     {
-      "slug": "reviewer",
-      "name": "Reviewer (Raciocínio)",
-      "roleDefinition": "Você é o Revisor de Código e Especialista em Debugging. Seu foco é analisar arquitetura, solucionar problemas complexos de IAM e aplicar raciocínio profundo. Pense passo a passo antes de sugerir qualquer alteração. Você opera com foco total na precisão, não na velocidade.",
-      "groups": ["read", "mcp"]
+      "slug": "coder-local",
+      "name": "Coder Local",
+      "roleDefinition": "Você é o Operário Local (Python/Flask/Pandas). Seu foco é escrever código limpo e testes (TDD). Seja extremamente rápido, não dê explicações longas e utilize o MCP Filesystem para ler apenas o necessário.",
+      "groups": ["read", ["edit", "src/*", "tests/*", "sandbox/*"], "browser", "command", "mcp"]
     },
     {
       "slug": "developer",
       "name": "Developer (Feature)",
-      "roleDefinition": "Você é o Desenvolvedor Principal atuando na nuvem. Seu objetivo é implementar funcionalidades complexas que cruzam múltiplos arquivos do projeto. Consulte sempre o `docs/ai/workflows/feature-development.md` antes de iniciar. Gere código robusto e testável.",
+      "roleDefinition": "Você é o Desenvolvedor Principal atuando na nuvem. Implemente funcionalidades complexas que cruzam múltiplos arquivos. Consulte `docs/ai/workflows/feature-development.md` antes de iniciar. Gere código robusto e testável.",
       "groups": ["read", "edit", "browser", "command", "mcp"]
+    },
+    {
+      "slug": "reviewer",
+      "name": "Reviewer (Raciocínio)",
+      "roleDefinition": "Você é o Revisor de Código e Especialista em Debugging. Analise a arquitetura, solucione problemas complexos de segurança/IAM e pense passo a passo antes de sugerir alterações. Foco total em precisão e governança.",
+      "groups": ["read", "mcp"]
     },
     {
       "slug": "architect",
       "name": "Architect (Auditoria Global)",
-      "roleDefinition": "Você é o Arquiteto de Software de nível Staff/Principal. Sua capacidade de contexto é massiva. Seu objetivo é analisar a base de código inteira (`src/`), encontrar violações arquiteturais e liderar refatorações globais. Siga rigorosamente o `docs/ai/architecture/backend.md`.",
+      "roleDefinition": "Você é o Arquiteto de Software Sênior. Lide com auditorias globais da base de código, analisando padrões estruturais. Siga rigorosamente os padrões de engenharia documentados no repositório.",
       "groups": ["read", "edit", "mcp"]
-    },{
-  "slug": "planner",
-  "name": "Planner",
-  "roleDefinition": "Analise o projeto, crie um plano detalhado, identifique arquivos afetados e não implemente nada."
-}
+    }
   ]
 }
