@@ -58,18 +58,14 @@ Este documento define a estratégia oficial de roteamento de IA para o projeto, 
 | Auditoria do projeto inteiro | **Global Architecture Review** |
 | Queda de serviço / Emergência | **Emergency Fallback** |
 
-## Context Thresholds
+## Context Thresholds (Limites de Roteamento por Volume)
 
-Até 5 arquivos:
-→ Local Coding
+A escolha da capacidade também é ditada pelo volume de arquivos afetados simultaneamente na tarefa. Siga rigorosamente esta métrica:
 
-Até 20 arquivos:
-→ Deep Reasoning
+* **Até 5 arquivos:** $\rightarrow$ `Local Coding` (A VRAM local processa confortavelmente).
+* **Até 20 arquivos:** $\rightarrow$ `Deep Reasoning` (Exige lógica conectiva entre múltiplos módulos locais).
+* **Até 50 arquivos:** $\rightarrow$ `Feature Development` (Necessário descarregar na nuvem econômica).
+* **Acima de 50 arquivos:** $\rightarrow$ `Global Architecture Review` (Obrigatório o uso de modelos de contexto massivo Premium).
 
-Até 50 arquivos:
-→ Feature Development
-
-Acima de 50 arquivos:
-→ Global Architecture Review
 
 > **Regra Final:** Nunca utilize uma capacidade maior apenas porque ela está disponível. Escolha sempre o menor ambiente capaz de executar a tarefa com a qualidade exigida.
